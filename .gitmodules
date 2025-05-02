@@ -1,0 +1,3 @@
+[submodule "models/segment-anything-2"]
+	path = models/segment-anything-2
+	url = https://github.com/facebookresearch/sam2
