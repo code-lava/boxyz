@@ -79,11 +79,11 @@ def convert_coco_to_yolo_seg(coco_dir, output_dir):
                             for i in range(0, len(points), 2):
                                 if i + 1 < len(points):
                                     x, y = points[i], points[i + 1]
-                                    normalized_points.append(f"{x / width:.6f}")
-                                    normalized_points.append(f"{y / height:.6f}")
+                                    normalized_points.append(f"{x / width:.18f}")
+                                    normalized_points.append(f"{y / height:.18f}")
 
                             if normalized_points:
-                                f.write(f"{category_id} {iscrowd} {' '.join(normalized_points)}\n")
+                                f.write(f"{category_id} {' '.join(normalized_points)}\n")
 
     create_data_yaml(output_dir, coco_data)
     print(f"Conversion complete. Output saved to {output_dir}")
@@ -107,7 +107,7 @@ def create_data_yaml(output_dir, coco_data):
         os.path.join(output_dir, 'test', 'images')) else 0
 
     data = {
-        'path': '.',  # relative to where the YAML file is stored
+        'path': f'{output_dir}',  # relative to where the YAML file is stored
         'train': 'train/images',
         'val': 'valid/images',
         'test': 'test/images' if test_count > 0 else '',
