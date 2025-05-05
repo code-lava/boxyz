@@ -6,6 +6,8 @@ Take home assignment
 
 **date**: 05.05.2025
 
+Download the reports for [Task 1](assets/reports/1_depth_map_processing.pdf) and [Task 2](assets/reports/2_box_segmentation_yolo_eval.pdf)
+
 ## Task 1 - Depth Map Processing
 
 Run the Jupyter notebook [`notebooks/1_depth_map_processing.ipynb`](notebooks/1_depth_map_processing.ipynb) to process the depth maps.
@@ -22,7 +24,7 @@ jupyter nbconvert --execute --to pdf notebooks/1_depth_map_processing.ipynb
 mv notebooks/1_depth_map_processing.pdf assets/reports/1_depth_map_processing.pdf
 ```
 
-**TLDR:** Download the generated Jupyter PDF report [here](assets/reports/1_depth_map_processing.pdf)
+**NOTE** Download the generated Jupyter PDF report [here](assets/reports/1_depth_map_processing.pdf)
 
 ## Task 2 - Box Segmentation
 
@@ -44,20 +46,21 @@ DS_LOCATION='datasets/segment' jupyter notebook notebooks/2.2_box_segmentation_y
 
 Finally, run the Jupyter notebook `notebooks/2.3_box_segmentation_yolo_eval.ipynb` to evaluate the trained models,
 
-This will evaluate the `train_...` prefixed trained models, otherwise, it will automatically download the model checkpoints
-trained on the SCD carton box dataset.
+This will evaluate the `train_...` prefixed trained models if specified with `MODEL_NAME_PREFIX="train_"`, otherwise, 
+it will use the trained model checkpoints trained on the SCD carton box dataset.
 
 ```bash
-DS_LOCATION='datasets/segment' jupyter notebook notebooks/2.2_box_segmentation_yolo_train.ipynb
+MODEL_NAME_PREFIX='train_' DS_LOCATION='datasets/segment' jupyter notebook notebooks/2.3_box_segmentation_yolo_eval.ipynb
 ```
 
 **To Export the notebook as PDF**
 
+remove the `MODEL_NAME_PREFIX='train_'` if you would like to evaluate on the trained model checkpoints 
+
 ```bash
 #sudo apt-get install texlive-xetex texlive-fonts-recommended texlive-plain-generic pandoc
-
-DS_LOCATION='datasets/segment' jupyter nbconvert --execute --to pdf notebooks/2.3_box_segmentation_yolo_eval.pdf
+MODEL_NAME_PREFIX='train_' DS_LOCATION='datasets/segment' jupyter nbconvert --execute --to pdf notebooks/2.3_box_segmentation_yolo_eval.ipynb
 mv notebooks/2.3_box_segmentation_yolo_eval.pdf assets/reports/2_box_segmentation_yolo_eval.pdf
 ```
 
-**TLDR:** Download the generated Jupyter PDF report [here](assets/reports/2_box_segmentation_yolo_eval.pdf)
+**NOTE** Download the generated Jupyter PDF report [here](assets/reports/2_box_segmentation_yolo_eval.pdf)

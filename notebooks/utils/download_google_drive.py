@@ -3,10 +3,11 @@ import json
 import shutil
 from pathlib import Path
 import zipfile
-from tqdm import tqdm
 import requests
 import re
 from urllib.parse import urlencode
+
+from tqdm import tqdm
 
 
 def extract_file_id(url):

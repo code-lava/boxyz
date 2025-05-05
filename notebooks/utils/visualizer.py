@@ -1,9 +1,12 @@
+import os
+
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
 
 def visualize_segmentation_annotations(image_path, txt_path, label_map):
+
     image = cv2.imread(image_path)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     h, w = image.shape[:2]
@@ -52,4 +55,25 @@ def visualize_segmentation_annotations(image_path, txt_path, label_map):
             cv2.addWeighted(overlay, alpha, image, 1 - alpha, 0, image)
             cv2.polylines(image, [polygon_points], True, color, 2)
 
+    return image
+
+
+def load_result_image(eval_dir, batch_name, image_type, convert_color=True):
+    """
+    Loads an image file from evaluation results and returns a processed OpenCV image.
+
+    Args:
+        eval_dir: str: Directory where evaluation results are stored
+        batch_name: str: Name of the batch (e.g., 'val_batch0')
+        image_type: str: Type of image ('labels' or 'pred')
+        convert_color: bool: Whether to convert from BGR to RGB
+
+    Returns:
+        numpy.ndarray: Processed OpenCV image
+    """
+    image_path = os.path.join(eval_dir, f'{batch_name}_{image_type}.jpg')
+    image = cv2.imread(str(image_path))
+
+    if convert_color:
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     return image
