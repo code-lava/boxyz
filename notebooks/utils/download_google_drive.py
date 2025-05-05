@@ -1,5 +1,3 @@
-# download_gdrive.py
-
 import os
 import json
 import shutil
