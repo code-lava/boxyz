@@ -6,7 +6,17 @@ import matplotlib.pyplot as plt
 
 
 def visualize_segmentation_annotations(image_path, txt_path, label_map):
+    """
+    Visualize the segmentation mask on a image deom the dataset.
 
+    Args:
+        image_path: str: Path to the image file
+        txt_path: str: Path to the annotation file
+        label_map: List[str]: List of the class labels
+
+    Returns:
+        numpy.ndarray: Processed OpenCV image
+    """
     image = cv2.imread(image_path)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     h, w = image.shape[:2]

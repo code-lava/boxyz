@@ -6,13 +6,14 @@ import yaml
 from tqdm import tqdm
 
 
-def convert_coco_to_yolo_seg(coco_dir, output_dir):
+def convert_coco_to_yolo_seg(coco_dir, output_dir, description='COCO-style carton dataset converted to YOLO format'):
     """
-    Convert COCO-style dataset to YOLO segmentation format.
+    Convert COCO-style dataset to YOLO segmentation (ultralytics) format.
 
     Args:
         coco_dir: str: Path to the COCO dataset directory
         output_dir: str: Path to output the YOLO dataset
+        description: str: Description of the YOLO dataset
     """
     os.makedirs(output_dir, exist_ok=True)
 
@@ -85,17 +86,18 @@ def convert_coco_to_yolo_seg(coco_dir, output_dir):
                             if normalized_points:
                                 f.write(f"{category_id} {' '.join(normalized_points)}\n")
 
-    create_data_yaml(output_dir, coco_data)
+    create_data_yaml(output_dir, coco_data, description)
     print(f"Conversion complete. Output saved to {output_dir}")
 
 
-def create_data_yaml(output_dir, coco_data):
+def create_data_yaml(output_dir, coco_data, description='COCO-style carton dataset converted to YOLO format'):
     """
     Create data.yaml file for the dataset.
 
    Args:
         output_dir: str: Path to output the YOLO dataset
         coco_data: dict: Dict of COCO box dataset
+        description: str: Description of the YOLO dataset
     """
     categories = {cat['id'] - 1: cat['name'] for cat in coco_data.get('categories', [])}
 
@@ -116,10 +118,10 @@ def create_data_yaml(output_dir, coco_data):
 
     print("Creating data.yaml file...")
     with open(os.path.join(output_dir, 'data.yaml'), 'w') as f:
-        f.write("# COCO-style four-class carton dataset converted to YOLO format\n")
-        f.write("# Example usage: yolo train data=data.yaml\n\n")
+        f.write(f"# {description}\n")
+        f.write('# Example usage: yolo train data=data.yaml\n\n')
 
-        f.write(f"# Train/val/test sets\n")
+        f.write('# Train/val/test sets\n')
         f.write(f"path: {data['path']}  # dataset root dir\n")
         f.write(f"train: {data['train']}  # train images (relative to 'path') {train_count} images\n")
         f.write(f"val: {data['val']}  # val images (relative to 'path') {val_count} images\n")
@@ -128,8 +130,8 @@ def create_data_yaml(output_dir, coco_data):
         else:
             f.write("\n")
 
-        f.write("# Classes\n")
-        f.write("names:\n")
+        f.write('# Classes\n')
+        f.write('names:\n')
         for class_id, class_name in sorted(categories.items()):
             f.write(f"  {class_id}: {class_name}\n")
 

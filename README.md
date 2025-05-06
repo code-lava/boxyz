@@ -1,6 +1,5 @@
 # BoXYZ - Carton Pose Estimation & Segmentation 
 
-Take home assignment
 
 **author**: Fares Abawi
 
@@ -28,7 +27,7 @@ mv notebooks/1_depth_map_processing.pdf assets/reports/1_depth_map_processing.pd
 
 ## Task 2 - Box Segmentation
 
-### Preprocess dataset 
+### Preprocess dataset
 
 First, run the Jupyter notebook `notebooks/2.1_download_preprocess_datasets.ipynb` 
 to download and convert the datasets to an ultralytics-compatible format.
@@ -50,10 +49,12 @@ DS_LOCATION='datasets/segment' jupyter notebook notebooks/2.2_box_segmentation_y
 
 ### Evaluate
 
+⚠️⚠️⚠️ WARNING ⚠️⚠️⚠️ **TRAINING THE MODEL IS NOT NECESSARY TO RUN THE EVALUATION BUT YOU NEED TO [DOWNLOAD AND PROCESS THE DATASET](#preprocess-dataset)**
+
 Finally, run the Jupyter notebook `notebooks/2.3_box_segmentation_yolo_eval.ipynb` to evaluate the trained models,
 
 This will evaluate the `train_...` prefixed trained models if specified with `MODEL_NAME_PREFIX="train_"`, otherwise, 
-it will use the trained model checkpoints trained on the SCD carton box dataset.
+it will use the model checkpoints already trained on the SCD carton box dataset.
 
 ```bash
 MODEL_NAME_PREFIX='train_' DS_LOCATION='datasets/segment' jupyter notebook notebooks/2.3_box_segmentation_yolo_eval.ipynb

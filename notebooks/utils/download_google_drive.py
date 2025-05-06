@@ -148,6 +148,28 @@ def download_and_extract(url, output_dir, cleanup=False):
     print(f"Download complete. Output saved to {output_dir}")
 
 
+def copy_directory_with_overwrites(source_dir, target_dir):
+    """
+    Copy contents from source_dir to target_dir, overwriting existing files.
+
+    Args:
+        source_dir (str): Path to the source directory
+        target_dir (str): Path to the target directory
+    """
+    os.makedirs(target_dir, exist_ok=True)
+
+    items = os.listdir(source_dir)
+    for item in tqdm(items, desc=f"Copying {os.path.basename(source_dir)}"):
+        source_path = os.path.join(source_dir, item)
+        target_path = os.path.join(target_dir, item)
+
+        if os.path.isfile(source_path):
+            shutil.copy2(source_path, target_path)
+        elif os.path.isdir(source_path):
+            copy_directory_with_overwrites(source_path, target_path)
+    print(f"Copy complete. Data copied from {source_dir} to {target_dir}")
+
+
 if __name__ == "__main__":
     import argparse
 
