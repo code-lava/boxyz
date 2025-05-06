@@ -28,6 +28,8 @@ mv notebooks/1_depth_map_processing.pdf assets/reports/1_depth_map_processing.pd
 
 ## Task 2 - Box Segmentation
 
+### Preprocess dataset 
+
 First, run the Jupyter notebook `notebooks/2.1_download_preprocess_datasets.ipynb` 
 to download and convert the datasets to an ultralytics-compatible format.
 
@@ -37,12 +39,16 @@ Set the `DS_LOCATION` to where the SCD dataset should be downloaded (it will be 
 DS_LOCATION='datasets/segment' jupyter notebook notebooks/2.1_download_preprocess_datasets.ipynb
 ```
 
+### Train
+
 Next, run the Jupyter notebook `notebooks/2.2_box_segmentation_yolo_train.ipynb` to train the YOLOv9 and YOLOv11 on
 the SCD datset (OSCD followed by LSCD).
 
 ```bash
 DS_LOCATION='datasets/segment' jupyter notebook notebooks/2.2_box_segmentation_yolo_train.ipynb
 ```
+
+### Evaluate
 
 Finally, run the Jupyter notebook `notebooks/2.3_box_segmentation_yolo_eval.ipynb` to evaluate the trained models,
 
