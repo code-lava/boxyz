@@ -109,7 +109,9 @@ def create_data_yaml(output_dir, coco_data, description='COCO-style carton datas
         os.path.join(output_dir, 'test', 'images')) else 0
 
     data = {
-        'path': f'{output_dir}',  # relative to where the YAML file is stored
+        # WARNING: path is absolute because utralytics will assume any dataset is in the datasets folder relative to training script.
+        # Change the `path` manually in `data.yaml` if you relocate the dataset
+        'path': f'{os.path.abspath(output_dir)}',
         'train': 'train/images',
         'val': 'valid/images',
         'test': 'test/images' if test_count > 0 else '',
@@ -123,10 +125,11 @@ def create_data_yaml(output_dir, coco_data, description='COCO-style carton datas
 
         f.write('# Train/val/test sets\n')
         f.write(f"path: {data['path']}  # dataset root dir\n")
-        f.write(f"train: {data['train']}  # train images (relative to 'path') {train_count} images\n")
-        f.write(f"val: {data['val']}  # val images (relative to 'path') {val_count} images\n")
+        f.write(f"train: {data['train']}  # train images (relative to 'path') [DEBUG:{train_count} images]\n")
+        f.write(f"val: {data['val']}  # val images (relative to 'path') [DEBUG:{val_count} images]\n")
+        # TODO (fabawi): no test set in SCD, try to get a test set from somewhere. Leave it for now
         if test_count > 0:
-            f.write(f"test: {data['test']}  # test images (relative to 'path') {test_count} images\n\n")
+            f.write(f"test: {data['test']}  # test images (relative to 'path') [DEBUG:{test_count} images]\n\n")
         else:
             f.write("\n")
 
