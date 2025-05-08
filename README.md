@@ -5,7 +5,7 @@
 
 **date**: 05.05.2025
 
-Download the reports for [Task 1](assets/reports/1_depth_map_processing.md) and [Task 2](assets/reports/2_box_segmentation_yolo_eval.md)
+View the reports for [Task 1](assets/reports/1_depth_map_processing.md) and [Task 2](assets/reports/2_box_segmentation_yolo_eval.md)
 
 ## Requirements
 
@@ -49,7 +49,7 @@ DS_LOCATION='datasets/segment' jupyter notebook notebooks/2.1_download_preproces
 
 ### Train
 
-Next, run the Jupyter notebook `notebooks/2.2_box_segmentation_yolo_train.ipynb` to train the YOLOv9 and YOLOv11 on
+Run the Jupyter notebook `notebooks/2.2_box_segmentation_yolo_train.ipynb` to train the YOLOv9 and YOLOv11 on
 the SCD datset (OSCD followed by LSCD).
 
 ```bash
@@ -60,7 +60,12 @@ DS_LOCATION='datasets/segment' jupyter notebook notebooks/2.2_box_segmentation_y
 
 ⚠️⚠️⚠️ WARNING ⚠️⚠️⚠️ **TRAINING THE MODEL IS NOT NECESSARY TO RUN THE EVALUATION BUT YOU NEED TO [DOWNLOAD AND PROCESS THE DATASET](#preprocess-dataset)**
 
-Finally, run the Jupyter notebook `notebooks/2.3_box_segmentation_yolo_eval.ipynb` to evaluate the trained models,
+You can either train the model or use the pretrained models on the [SCD dataset](https://arxiv.org/abs/2102.12808).
+
+Download the YOLO checkpoints pretrained on the SCD dataset from [here](https://1drv.ms/f/c/68347683875c28db/EkdgNnKKAqJPrrGnipEBb0YBBwWiGve1j4QCmm6hDR6OFQ?e=75zlm1) and place them in `notebooks/runs/` folder e.g., `notebooks/runs/segment/2.2G_2_ft_mscd_yolo11m_epoch12`
+
+
+Run the Jupyter notebook `notebooks/2.3_box_segmentation_yolo_eval.ipynb` to evaluate the trained models,
 
 This will evaluate the `train_...` prefixed trained models if specified with `MODEL_NAME_PREFIX="train_"`, otherwise, 
 it will use the model checkpoints already trained on the SCD carton box dataset.
