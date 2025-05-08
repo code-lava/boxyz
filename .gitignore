@@ -4,12 +4,10 @@ __MACOSX
 .idea/
 .vscode/
 venv/
-env/
 .venv
 .env
 *.swp
 
-*$py.class
 *.so
 __pycache__/
 .ipynb_checkpoints/
