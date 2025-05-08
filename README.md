@@ -5,7 +5,18 @@
 
 **date**: 05.05.2025
 
-Download the reports for [Task 1](assets/reports/1_depth_map_processing.pdf) and [Task 2](assets/reports/2_box_segmentation_yolo_eval.pdf)
+Download the reports for [Task 1](assets/reports/1_depth_map_processing.md) and [Task 2](assets/reports/2_box_segmentation_yolo_eval.md)
+
+## Requirements
+
+All requirements are installed in their corresponding notebook. Models were trained on RTX 3080 Ti. 
+Versions:
+- Python 3.10
+- PyTorch 2.6
+- Ultralytics 8.3.123
+- Open3D 0.19.0
+- NumPy 2.2.5
+- OpenCV 4.10.0
 
 ## Task 1 - Depth Map Processing
 
@@ -15,15 +26,13 @@ Run the Jupyter notebook [`notebooks/1_depth_map_processing.ipynb`](notebooks/1_
 INTERACTIVE_VISUALIZATION=true jupyter notebook notebooks/1_depth_map_processing.ipynb
 ```
 
-**To Export the notebook as PDF**
+**To Execute and Export the Notebook**
 
 ```bash
-#sudo apt-get install texlive-xetex texlive-fonts-recommended texlive-plain-generic pandoc
-jupyter nbconvert --execute --to pdf notebooks/1_depth_map_processing.ipynb
-mv notebooks/1_depth_map_processing.pdf assets/reports/1_depth_map_processing.pdf
+jupyter nbconvert --execute --to markdown notebooks/1_depth_map_processing.ipynb
 ```
 
-**NOTE** Download the generated Jupyter PDF report [here](assets/reports/1_depth_map_processing.pdf)
+**NOTE** Report can be found [here](assets/reports/1_depth_map_processing.md)
 
 ## Task 2 - Box Segmentation
 
@@ -60,14 +69,14 @@ it will use the model checkpoints already trained on the SCD carton box dataset.
 MODEL_NAME_PREFIX='train_' DS_LOCATION='datasets/segment' jupyter notebook notebooks/2.3_box_segmentation_yolo_eval.ipynb
 ```
 
-**To Export the notebook as PDF**
+**To Execute and Export the Notebook**
+
+⚠️⚠️⚠️ WARNING ⚠️⚠️⚠️ **THE FOLLOWING REPORT-GENERATING SCRIPT MAY TAKE 5 MINUTES ON A GPU LIKE RTX 3080 TI OR MORE THAN AN HOUR ON CPU**
 
 remove the `MODEL_NAME_PREFIX='train_'` if you would like to evaluate on the trained model checkpoints 
 
 ```bash
-#sudo apt-get install texlive-xetex texlive-fonts-recommended texlive-plain-generic pandoc
-MODEL_NAME_PREFIX='train_' DS_LOCATION='datasets/segment' jupyter nbconvert --execute --to pdf notebooks/2.3_box_segmentation_yolo_eval.ipynb
-mv notebooks/2.3_box_segmentation_yolo_eval.pdf assets/reports/2_box_segmentation_yolo_eval.pdf
+MODEL_NAME_PREFIX='train_' DS_LOCATION='datasets/segment' jupyter nbconvert --execute --to markdown notebooks/2.3_box_segmentation_yolo_eval.ipynb
 ```
 
-**NOTE** Download the generated Jupyter PDF report [here](assets/reports/2_box_segmentation_yolo_eval.pdf)
+**NOTE** Report can be found [here](assets/reports/2_box_segmentation_yolo_eval.md)
