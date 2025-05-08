@@ -1,7 +1,5 @@
 # BoXYZ - Evaluate YOLO Carton Box Segmentation 
 
-⚠️⚠️⚠️ WARNING ⚠️⚠️⚠️ **MAKE SURE YOU DOWNLOADED AND PROCESSED THE SCD CARTON DATASET BY [RUNNING NOTEBOOK 2.1](./2.1_download_preprocess_datasets.ipynb)**
-
 Here I evaluate the SCD carton dataset on the instance segmentation task using YOLOv9 (compact) and YOLOv11 (small and medium).
 
 **Assumptions and Observations**
